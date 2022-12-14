@@ -1,0 +1,18 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::<aws-account-id>:<OpenID Connect provider URL-without-https:// of eks cluster>"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "<OpenID Connect provider URL-without-https:// of eks cluster>:aud": "sts.amazonaws.com",
+                    "<OpenID Connect provider URL-without-https:// of eks cluster>:sub": "system:serviceaccount:<namespace-name>:<service-account-name>"
+                }
+            }
+        }
+    ]
+}
